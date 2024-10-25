@@ -1,0 +1,141 @@
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+
+export default class App extends Component {
+    state = {
+        team1Score: 0,
+        team2Score: 0,
+        team1Name: 'Team 1',
+        team2Name: 'Team 2',
+    };
+
+    addPointsToTeam1 = (points) => {
+        this.setState((prevState) => ({ team1Score: prevState.team1Score + points }));
+        alert(`${this.state.team1Name} +${points} points`);
+    };
+
+    addPointsToTeam2 = (points) => {
+        this.setState((prevState) => ({ team2Score: prevState.team2Score + points }));
+        alert(`${this.state.team2Name} +${points} points`);
+    };
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>
+                    TRACK SCOREKEEPER
+                </Text>
+
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter Team 1 Name"
+                    onChangeText={(text) => this.setState({ team1Name: text })}
+                />
+                
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter Team 2 Name"
+                    onChangeText={(text) => this.setState({ team2Name: text })}
+                />
+
+                <View style={styles.buttonContainer}>
+                    <View style={styles.teamContainer}>
+                        <Text style={styles.teamTitle}>{this.state.team1Name}</Text>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam1(6)}>
+                            <Text style={styles.buttonText}>1st (6 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam1(4)}>
+                            <Text style={styles.buttonText}>2nd (4 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam1(3)}>
+                            <Text style={styles.buttonText}>3rd (3 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam1(2)}>
+                            <Text style={styles.buttonText}>4th (2 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam1(1)}>
+                            <Text style={styles.buttonText}>5th (1 pt)</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.teamContainer}>
+                        <Text style={styles.teamTitle}>{this.state.team2Name}</Text>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam2(6)}>
+                            <Text style={styles.buttonText}>1st (6 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam2(4)}>
+                            <Text style={styles.buttonText}>2nd (4 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam2(3)}>
+                            <Text style={styles.buttonText}>3rd (3 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam2(2)}>
+                            <Text style={styles.buttonText}>4th (2 pts)</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.addPointsToTeam2(1)}>
+                            <Text style={styles.buttonText}>5th (1 pt)</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <Text style={styles.score}>{this.state.team1Name}: {this.state.team1Score}</Text>
+                <Text style={styles.score}>{this.state.team2Name}: {this.state.team2Score}</Text>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#E1F5E1',
+        paddingVertical: 5,
+    },
+    title: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    input: {
+        height: 35,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        paddingHorizontal: 8,
+        marginVertical: 8,
+        width: '75%',
+        borderRadius: 5,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginBottom: 8,
+    },
+    teamContainer: {
+        alignItems: 'center',
+        marginHorizontal: 8,
+    },
+    teamTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+    button: {
+        backgroundColor: '#4CAF50',
+        padding: 6,
+        marginVertical: 3,
+        borderRadius: 5,
+        width: 75,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 11,
+        textAlign: 'center',
+    },
+    score: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginTop: 4,
+    },
+});
